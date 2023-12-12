@@ -1,0 +1,417 @@
+{
+	"info": {
+		"_postman_id": "af8a93d5-c8c0-4925-8e16-7e9b71e37a9f",
+		"name": "Microservices",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15224689"
+	},
+	"item": [
+		{
+			"name": "Api Gateway",
+			"item": [
+				{
+					"name": "Health",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8078/actuator/health",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8078",
+							"path": [
+								"actuator",
+								"health"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Prometheus",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8078/actuator/prometheus",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8078",
+							"path": [
+								"actuator",
+								"prometheus"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Check Loan Eligibility",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userId\": \"123\",\n    \"amount\": \"1000\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8078/bank/api/v1/loans/eligibility",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8078",
+							"path": [
+								"bank",
+								"api",
+								"v1",
+								"loans",
+								"eligibility"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Credit Score",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userId\": \"123\",\n    \"amount\": \"1000\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8078/credit-bureau/api/v1/credit-score",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8078",
+							"path": [
+								"credit-bureau",
+								"api",
+								"v1",
+								"credit-score"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Config Server",
+			"item": [
+				{
+					"name": "Health",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8888/actuator/health",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8888",
+							"path": [
+								"actuator",
+								"health"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Properties",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8888/bank/local",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8888",
+							"path": [
+								"bank",
+								"local"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Upsert Properties",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"properties\": [\n        {\n            \"appName\": \"bank\",\n            \"profile\": \"local\",\n            \"key\": \"bank.loans.block-all\",\n            \"value\": \"false\"\n        },\n        {\n            \"appName\": \"bank\",\n            \"profile\": \"local\",\n            \"key\": \"bank.loans.eligibility.min-credit-score\",\n            \"value\": \"620\"\n        },\n        {\n            \"appName\": \"bank\",\n            \"profile\": \"local\",\n            \"key\": \"bank.loans.eligibility.max-loan-amount\",\n            \"value\": \"10000\"\n        },\n        {\n            \"appName\": \"credit-bureau\",\n            \"profile\": \"local\",\n            \"key\": \"credit-bureau.maintenance.active\",\n            \"value\": \"false\"\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8888/api/v1/properties",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8888",
+							"path": [
+								"api",
+								"v1",
+								"properties"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Bank",
+			"item": [
+				{
+					"name": "Health",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/actuator/health",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"actuator",
+								"health"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Prometheus",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/actuator/prometheus",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"actuator",
+								"prometheus"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Refresh Context",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/actuator/refresh",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"actuator",
+								"refresh"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Check Loan Eligibility",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userId\": \"123\",\n    \"amount\": \"1000\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/loans/eligibility",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"loans",
+								"eligibility"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Credit Bureau",
+			"item": [
+				{
+					"name": "Health",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userId\": \"123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/actuator/health",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"actuator",
+								"health"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Prometheus",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userId\": \"123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/actuator/prometheus",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"actuator",
+								"prometheus"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Refresh Context",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userId\": \"123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/actuator/refresh",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"actuator",
+								"refresh"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Credit Score",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userId\": \"123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/v1/credit-score",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"v1",
+								"credit-score"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

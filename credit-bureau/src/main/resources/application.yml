@@ -1,0 +1,20 @@
+server:
+  port: 8081
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,prometheus,refresh
+  zipkin:
+    tracing:
+      endpoint: ${ZIPKIN_URL:http://localhost:9411/api/v2/spans}
+  tracing:
+    sampling:
+      probability: 1.0
+
+springdoc:
+  swagger-ui:
+    tagsSorter: alpha
+    operations-sorter: alpha
+  override-with-generic-response: false

@@ -1,0 +1,32 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="2" author="alexbezsh">
+        <insert tableName="PROPERTIES">
+            <column name="APPLICATION" value="credit-bureau"/>
+            <column name="PROFILE" value="local"/>
+            <column name="KEY" value="credit-bureau.maintenance.active"/>
+            <column name="VALUE" value="false"/>
+        </insert>
+        <insert tableName="PROPERTIES">
+            <column name="APPLICATION" value="bank"/>
+            <column name="PROFILE" value="local"/>
+            <column name="KEY" value="bank.loans.block-all"/>
+            <column name="VALUE" value="false"/>
+        </insert>
+        <insert tableName="PROPERTIES">
+            <column name="APPLICATION" value="bank"/>
+            <column name="PROFILE" value="local"/>
+            <column name="KEY" value="bank.loans.eligibility.min-credit-score"/>
+            <column name="VALUE" value="620"/>
+        </insert>
+        <insert tableName="PROPERTIES">
+            <column name="APPLICATION" value="bank"/>
+            <column name="PROFILE" value="local"/>
+            <column name="KEY" value="bank.loans.eligibility.max-loan-amount"/>
+            <column name="VALUE" value="10000"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

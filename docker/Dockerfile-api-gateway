@@ -1,0 +1,11 @@
+FROM maven:3.8.4-openjdk-17-slim AS build
+COPY api-gateway/src /home/app/api-gateway/src
+COPY api-gateway/pom.xml /home/app/api-gateway/pom.xml
+COPY common/src /home/app/common/src
+COPY common/pom.xml /home/app/common/pom.xml
+COPY pom.xml /home/app/pom.xml
+RUN mvn clean package -P api-gateway -f /home/app/pom.xml -DskipTests -Dcheckstyle.skip
+
+FROM openjdk:17.0.1-jdk-slim
+COPY --from=build /home/app/api-gateway/target/*.jar /usr/local/lib/app.jar
+ENTRYPOINT java -jar /usr/local/lib/app.jar

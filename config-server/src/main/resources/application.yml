@@ -1,0 +1,51 @@
+server:
+  port: 8888
+
+spring:
+  application:
+    name: config-server
+  profiles:
+    active: jdbc
+  datasource:
+    url: ${DB_URL:jdbc:mysql://localhost:3306/configs?serverTimezone=UTC}
+    username: ${DB_USER:user}
+    password: ${DB_PASSWORD:password}
+    driver-class-name: com.mysql.jdbc.Driver
+  liquibase:
+    change-log: classpath:db/changelog.xml
+  cloud:
+    config:
+      server:
+        jdbc:
+          enabled: true
+          sql: SELECT `KEY`, VALUE FROM PROPERTIES WHERE APPLICATION=? AND PROFILE=? AND LABEL=?
+  jpa:
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_URL:http://localhost:8761/eureka}
+  instance:
+    prefer-ip-address: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, prometheus
+  zipkin:
+    tracing:
+      endpoint: ${ZIPKIN_URL:http://localhost:9411/api/v2/spans}
+  tracing:
+    sampling:
+      probability: 1.0
+
+springdoc:
+  swagger-ui:
+    path: /api/docs/swagger
+    tagsSorter: alpha
+    operations-sorter: alpha
+  override-with-generic-response: false
